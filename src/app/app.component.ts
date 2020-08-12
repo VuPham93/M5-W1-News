@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'M5-W1-News';
+
+  newArticle;
+
+  addArticle($event: any) {
+    this.newArticle = $event;
+  }
 }

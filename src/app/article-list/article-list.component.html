@@ -1,0 +1,44 @@
+<button class="btn btn-primary ml-2" (click)="addArticle()">Add</button>
+<ng-container *ngIf="!detail && !edit">
+  <table class="table table-striped table-light">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">News</th>
+      <th scope="col">Url</th>
+      <th scope="col">Like</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let art of articles; let id = index">
+    <tr>
+      <td>
+        <a href="#" (click)="showDetail(art)">{{art.title}}</a>
+      </td>
+      <td>
+        <a href="{{art.url}}" target="_blank">{{art.url}}</a>
+      </td>
+      <td>
+        <app-article-like [article]="art"></app-article-like>
+      </td>
+      <td>
+        <button class="btn btn-info" (click)="showEdit(art)">Edit</button>
+      </td>
+      <td>
+        <button class="btn btn-danger" (click)="delete(id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</ng-container>
+
+<ng-container *ngIf="detail">
+  <app-article-detail [article]="selectedArticle"></app-article-detail>
+  <button (click)="showList()">Back to list</button>
+</ng-container>
+
+<ng-container *ngIf="edit">
+  <app-article-edit [article]="selectedArticle"></app-article-edit>
+  <button (click)="showList()">Back to list</button>
+</ng-container>
+
